@@ -4,12 +4,14 @@ describe('Our first suite', () => {
 
     beforeEach(() => {
         cy.visit('/')
-        cy.contains('Forms').click()
-        cy.contains('Form Layouts').click()
+        
     })
 
     it('First test', () => {
        
+        cy.contains('Forms').click()
+        cy.contains('Form Layouts').click()
+
         // by Tag name
         cy.get('input')
 
@@ -43,6 +45,8 @@ describe('Our first suite', () => {
     })
 
     it('Second test', () => {
+        cy.contains('Forms').click()
+        cy.contains('Form Layouts').click()
 
         cy.get('[data-cy="signInButton"]')
 
@@ -60,6 +64,8 @@ describe('Our first suite', () => {
     })
 
     it('Then and wrap methods', () => {
+        cy.contains('Forms').click()
+        cy.contains('Form Layouts').click()
         
         // cy.contains('nb-card', 'Using the Grid').find('[for="inputEmail1"]').should('contain', 'Email')
         // cy.contains('nb-card', 'Using the Grid').find('[for="inputPassword2"]').should('contain', 'Password')
@@ -85,6 +91,8 @@ describe('Our first suite', () => {
 
     it('Invoke command', () => {
 
+        cy.contains('Forms').click()
+        cy.contains('Form Layouts').click()
         // 1
         cy.get('[for="exampleInputEmail1"]').should('contain', 'Email address')
 
@@ -110,7 +118,7 @@ describe('Our first suite', () => {
     })
 
     it('Assert propety', () => {
-        
+        cy.contains('Forms').click()        
         cy.contains('Datepicker').click()
 
         cy.contains('nb-card', 'Common Datepicker').find('input').then( input => {
@@ -121,6 +129,8 @@ describe('Our first suite', () => {
     })
 
     it('Radio buttons and checkbox', () => {
+        cy.contains('Forms').click()
+        cy.contains('Form Layouts').click()
 
         cy.contains('nb-card', 'Using the Grid').find('[type="radio"]').then( radioButtons => {
 
@@ -148,7 +158,6 @@ describe('Our first suite', () => {
     })
 
     it('Lists and dropdowns', () => {
-        cy.visit('/')
 
         //1
         // cy.get('nav nb-select').click()
@@ -181,7 +190,6 @@ describe('Our first suite', () => {
     })
 
     it('Web tables', () => {
-        
         cy.contains('Tables & Data').click()
         cy.contains('Smart Table').click()
 
@@ -223,7 +231,8 @@ describe('Our first suite', () => {
         
     })
 
-    it.only('Web datepickers', () => {
+    it('Web datepickers', () => {
+        cy.contains('Forms').click()
         cy.contains('Datepicker').click()
 
         function selectDayFromCurrent(day){
@@ -252,6 +261,30 @@ describe('Our first suite', () => {
         
 
 
+    })
+
+    it.only('PopUps and Tooltips', () => {
+        cy.contains('Modal & Overlays').click()
+        cy.contains('Tooltip').click()
+
+        cy.contains('nb-card', 'Colored Tooltips')
+            .contains('Default').click()
+        cy.get('nb-tooltip').should('contain', 'This is a tooltip')
+
+        cy.visit('/')
+        cy.contains('Tables & Data').click()
+        cy.contains('Smart Table').click()
+
+        //2
+        // const stub = cy.stub()
+        // cy.on('window:confirm', stub)
+        // cy.get('tbody tr').first().find('.nb-trash').click().then(() => {
+        //     expect(stub.getCall(0)).to.be.calledWith('Are you sure you want to delete?')
+        // })
+
+        //3
+        cy.get('tbody tr').first().find('.nb-trash').click()
+        cy.on('window:confirm', () => false)        
     })
 })
 
