@@ -263,7 +263,7 @@ describe('Our first suite', () => {
 
     })
 
-    it.only('PopUps and Tooltips', () => {
+    it('PopUps and Tooltips', () => {
         cy.contains('Modal & Overlays').click()
         cy.contains('Tooltip').click()
 
